@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KASDLab07
 {
@@ -10,6 +8,17 @@ namespace KASDLab07
     {
         static void Main(string[] args)
         {
+            string[] rows = File.ReadAllLines("../../Data/input.txt");
+
+            Finder finder = new Finder();
+
+            MyVector<string> result = finder.Find(rows);
+
+            result.Print();
+
+            File.AppendAllLines("../../Data/output.txt", result.ToArray().Select(t => t?.ToString()));
+
+            Console.ReadKey();
         }
     }
 }
